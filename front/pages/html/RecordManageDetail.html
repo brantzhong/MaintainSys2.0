@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>综合服务报修</title>
+    <link rel="stylesheet" href="../../weui-master/dist/style/weui.min.css"/>
+    <link rel="stylesheet" href="../../weui-master/dist/example/example.css"/>
+    <link rel="stylesheet" href="../../jquery-weui-build/dist/css/jquery-weui.css"/>
+    <link rel="stylesheet" href="../css/stylesheet.css"/>
+    <link rel="stylesheet" href="../../swiper-4.5.0/dist/css/swiper.min.css">
+    <link rel="stylesheet" href="../../score/css/demo.css">
+    <link rel="stylesheet" href="../../score/css/lq-score.css">
+    <script type="text/javascript" src="../../easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="../../jquery-weui-build/dist/js/jquery-weui.js"></script>
+    <script type="text/javascript" src="../../swiper-4.5.0/dist/js/swiper.min.js"></script>
+
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script src="../../score/js/lq-score.min.js"></script>
+    <script type="text/javascript" src="../js/common/global.js"></script>
+    <script type="text/javascript" src="../js/common/ajaxTools.js"></script>
+    <script type="text/javascript" src="../js/common/userInfo.js"></script>
+    <script type="text/javascript" src="../js/common/domTools.js"></script>
+    <script type="text/javascript" src="../js/pagejs/RecordManageDetail.js"></script>
+</head>
+<body ontouchstart>
+    <div class="weui-cells__title">报修单基本信息</div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>报修人</p>
+            </div>
+            <div id = "usr_name" class="weui-cell__ft"></div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>报修人部门</p>
+            </div>
+            <div id = "usr_dept" class="weui-cell__ft"></div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>报修人联系方式</p>
+            </div>
+            <div id = "usr_tele" class="weui-cell__ft"></div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>表单提交时间</p>
+            </div>
+            <div id = "submit_time_id" class="weui-cell__ft"></div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>维修进度</p>
+            </div>
+            <div  class="weui-cell__ft"></div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>预计完成时间</p>
+            </div>
+            <div  class="weui-cell__ft"></div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>是否匿名报修</p>
+            </div>
+            <div  class="weui-cell__ft"></div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>报修单退回人</p>
+            </div>
+            <div  class="weui-cell__ft"></div>
+        </div>
+
+
+        <div class="weui-cell weui-cell_switch">
+            <div class="weui-cell__bd">接受维修申请</div>
+            <div class="weui-cell__ft">
+                <label for="switchCP1" class="weui-switch-cp">
+                    <input id="switchCP1" class="weui-switch-cp__input" type="checkbox" />
+                    <div class="weui-switch-cp__box"></div>
+                </label>
+            </div>
+        </div>
+
+
+        <div class="weui-cell weui-cell_switch">
+            <div class="weui-cell__bd">催单或重新指派维修人员</div>
+            <div class="weui-cell__ft">
+                <label for="switchCP2" class="weui-switch-cp">
+                    <input id="switchCP2" class="weui-switch-cp__input" type="checkbox"/>
+                    <div class="weui-switch-cp__box"></div>
+                </label>
+            </div>
+        </div>
+
+
+        <div class="weui-cell weui-cell_switch">
+            <div class="weui-cell__bd" style="color: red">退回维修申请</div>
+            <div class="weui-cell__ft">
+                <label for="switchCP3" class="weui-switch-cp">
+                    <input id="switchCP3" class="weui-switch-cp__input" type="checkbox" />
+                    <div class="weui-switch-cp__box"></div>
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="weui-flex" id = "cmplt_record_form" style="display: none">
+
+        <div class="weui-flex__item">
+            <a href="javascript:void(0)" id = "promptBtn" class="weui-btn weui-btn_warn btn_space_round_fill"onclick="PromptMessage()"><i class=""></i>催单</a>
+
+        </div>
+        <div class="weui-flex__item">
+            <a href="javascript:void(0)" class="weui-btn weui-btn_primary btn_space_round_fill"onclick="redirectAgenda()" id ="RedirectBtn"><i class=""></i>重新指派</a>
+        </div>
+
+    </div>
+    <!--div class="button-sp-area" id = "cmplt_record_form" style="display: none">
+        <div class="weui-cell">
+            <div class="weui-cell__bd btn_space_round_fill">
+                <a href="javascript:void(0)" id = "promptBtn" class="weui-btn weui-btn_mini weui-btn_warn"onclick="PromptMessage()"><i class=""></i>   催单   </a>
+            </div>
+
+            <div class="weui-cell__bd btn_space_round_fill">
+                <a href="javascript:void(0)" class="weui-btn weui-btn_mini weui-btn_primary"onclick="wxGetParams()"><i class=""></i>重新指派维修人员</a>
+            </div>
+        </div>
+    </div-->
+
+
+
+    <div class="weui-cells" id = "accept_record_form" style="display: none">
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label for="Repair_classfication" class="weui-label">维修分类</label>
+            </div>
+            <!--input class="weui-input" id="Location" type="text" value="丈八总部"-->
+            <div class="weui-cell__ft">
+                <input class="weui-input" id="Repair_classfication" type="text" style = "color:black;text-align:right;" value="公共设施">
+            </div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label for="datetime-picker" >预计维修完成时间</label>
+            </div>
+            <!--input class="weui-input" id="Location" type="text" value="丈八总部"-->
+            <div class="weui-cell__ft">
+                <input class="weui-input"  type="text" id='datetime-picker'  style = "color:black;text-align:right;" value=""/>
+                <!--input class="weui-input" id="Location" type="text" style = "text-align:right;" value="丈八总部"-->
+            </div>
+        </div>
+
+        <div class="weui-cell">
+            <!--form action="/MaintainSys/src/php/AppFormHandle.php" method="post" id="form-xyy" enctype="multipart/form-data">
+
+                <input type="submit" name="submit" class="weui-btn weui-btn_primary" onclick="submitAppForm()" value="提交">
+
+            </form-->
+            <a href="javascript:void(0)" class="weui-btn weui-btn_primary" onclick="DistributeAgenda()" id = "DstbtBtn"><i class=""></i>任务派发</a>
+        </div>
+    </div>
+
+    <div class="weui-cells" id = "return_record_form" style="display: none">
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <textarea class="weui-textarea" placeholder="请输入退回表单原因" rows="3" onkeyup="wordStat(this);" maxlength="200"></textarea>
+                <div class="weui-textarea-counter"><span id="cnt">0</span>/200</div>
+            </div>
+        </div>
+
+        <div class="weui-cell">
+            <a href="javascript:void(0)" class="weui-btn weui-btn_primary"onclick="returnAgenda(this)"id = "RtnBtn"><i class=""></i>退回表单</a>
+        </div>
+
+    </div>
+
+    <div class="weui-cells__title" id = "return_comment_title" style="color: red"></div>
+    <div class="weui-cells weui-cells_form" id = "return_comment">
+    </div>
+
+    <div class="weui-cells__title">维修物品描述</div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p id = "submit_text_id"></p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div class="weui-cells__title">维修物品照片</div>
+    <div class = "weui-cells">
+        <div class="swiper-container">
+            <div id ="img_slide_box_id1" class="swiper-wrapper">
+                <!--div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i4/TB10rkPGVXXXXXGapXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1kQI3HpXXXXbSXFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div-->
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+
+            <!-- 如果需要导航按钮 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- 如果需要滚动条 -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </div>
+
+    <div class="weui-cells__title">维修完成物品照片</div>
+    <div class = "weui-cells">
+        <div class="swiper-container">
+            <div id ="img_slide_box_id2" class="swiper-wrapper">
+                <!--div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i4/TB10rkPGVXXXXXGapXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1kQI3HpXXXXbSXFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div-->
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+
+            <!-- 如果需要导航按钮 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- 如果需要滚动条 -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </div>
+
+<!--div class = "weui-cells">
+    <div class="weui-cells__title"></div>
+    <div id="page_footer" class = "weui-cell">
+
+    </div>
+</div-->
+
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>后勤服务报修系统</title>
+    <link rel="stylesheet" href="../weui-master/dist/style/weui.min.css"/>
+    <link rel="stylesheet" href="../weui-master/dist/example/example.css"/>
+    <link rel="stylesheet" href="../jquery-weui-build/dist/css/jquery-weui.css"/>
+    <link rel="stylesheet" href="./css/stylesheet.css"/>
+    <link rel="stylesheet" href="../swiper-4.5.0/dist/css/swiper.min.css">
+    <link rel="stylesheet" href="../score/css/demo.css">
+    <link rel="stylesheet" href="../score/css/lq-score.css">
+    <script type="text/javascript" src="../easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="../jquery-weui-build/dist/js/jquery-weui.js"></script>
+    <script type="text/javascript" src="../swiper-4.5.0/dist/js/swiper.min.js"></script>
+    <script src="../score/js/lq-score.min.js"></script>
+    <script type="text/javascript" src="RecordDetail.js"></script>
+</head>
+<body ontouchstart>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>表单提交时间</p>
+            </div>
+            <div id = "submit_time_id" class="weui-cell__ft"></div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>维修进度</p>
+            </div>
+            <div  class="weui-cell__ft"></div>
+        </div>
+
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>服务评价</p>
+            </div>
+            <!--div  id = "score_id" class="">
+                <span id="score_tip" class="lq-score-tip" style = "!important;text-align:left"></span>
+                <div id="score_tip" class="lq-score-tip"></div>
+                <div id="score_tip" class=""></div>
+            </div-->
+            <div class="myapp-score weui-cell__ft">
+                <div id="score_id">
+                </div>
+                <div class="myapp-tip">
+                    <span id="score_tip" class="lq-score-tip"></span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="weui-cell weui-cell_switch">
+            <div class="weui-cell__bd">接受维修申请</div>
+            <div class="weui-cell__ft">
+                <label for="switchCP1" class="weui-switch-cp">
+                    <input id="switchCP1" class="weui-switch-cp__input" type="checkbox" />
+                    <div class="weui-switch-cp__box"></div>
+                </label>
+            </div>
+        </div>
+
+
+        <div class="weui-cell weui-cell_switch">
+            <div class="weui-cell__bd">完成维修申请</div>
+            <div class="weui-cell__ft">
+                <label for="switchCP2" class="weui-switch-cp">
+                    <input id="switchCP2" class="weui-switch-cp__input" type="checkbox"/>
+                    <div class="weui-switch-cp__box"></div>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="weui-cells__title">维修物品描述</div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p id = "submit_text_id"></p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class = "weui-cells">
+        <div class="swiper-container">
+            <div id ="img_slide_box_id" class="swiper-wrapper">
+                <!--div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1n3rZHFXXXXX9XFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i4/TB10rkPGVXXXXXGapXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div>
+                <div class="swiper-slide"><img src="//gqianniu.alicdn.com/bao/uploaded/i4//tfscom/i1/TB1kQI3HpXXXXbSXFXXXXXXXXXX_!!0-item_pic.jpg_320x320q60.jpg" alt=""></div-->
+            </div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+
+            <!-- 如果需要导航按钮 -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- 如果需要滚动条 -->
+            <div class="swiper-scrollbar"></div>
+        </div>
+    </div>
+
+
+
+    <!--div class = "weui-cells">
+        <div class="weui-cells__title"></div>
+        <div id="page_footer" class = "weui-cell">
+
+        </div>
+    </div-->
+
+
+</body>
+</html>

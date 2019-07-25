@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>综合服务报修</title>
+    <link rel="stylesheet" href="../../weui-master/dist/style/weui.min.css"/>
+    <link rel="stylesheet" href="../../weui-master/dist/example/example.css"/>
+    <link rel="stylesheet" href="../../jquery-weui-build/dist/css/jquery-weui.css"/>
+
+    <!--link rel="stylesheet" href="../jquery-weui-build/demos/css/demos.css"/-->
+
+    <link rel="stylesheet" href="../css/stylesheet.css"/>
+    <!--script type="text/javascript" src = "https://cdn.polyfill.io/v2/polyfill.min.js"></script-->
+    <script type="text/javascript" src="../../easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="../../jquery-weui-build/dist/js/jquery-weui.min.js"></script>
+
+    <script type="text/javascript" src="../../image-conversion-master/src/conversion.js"></script>
+    <script type="text/javascript" src="../js/common/image.js"></script>
+    <script type="text/javascript" src="../js/common/domTools.js"></script>
+    <script type="text/javascript" src="../js/common/ajaxTools.js"></script>
+    <script type="text/javascript" src="../js/common/global.js"></script>
+    <script type="text/javascript" src="../js/common/userInfo.js"></script>
+    <script type="text/javascript" src="../js/pagejs/AppForm.js"></script>
+
+    <!--script type="text/javascript" src="GetUserInfo.js"></script-->
+
+</head>
+<body ontouchstart>
+    <header class="">
+        <h1 class="mainpage-title">填报表单</h1>
+    </header>
+
+
+    <div class="weui-cells__title">选择需要维修物品的地点</div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label for="Location" class="weui-label">办公区</label>
+            </div>
+            <!--input class="weui-input" id="Location" type="text" value="丈八总部"-->
+            <div class="weui-cell__ft">
+                <input class="weui-input" id="Location" type="text" style = "text-align:right;" value="北山门办公区">
+            </div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label for="Building" class="weui-label">楼宇</label>
+            </div>
+            <!--input class="weui-input" id="Location" type="text" value="丈八总部"-->
+            <div class="weui-cell__ft">
+                <input class="weui-input" id="Building" type="text" style = "text-align:right;" value="">
+            </div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label for="Floor" class="weui-label">楼层</label>
+            </div>
+            <!--input class="weui-input" id="Location" type="text" value="丈八总部"-->
+            <div class="weui-cell__ft">
+                <input class="weui-input" id="Floor" type="text" style = "text-align:right;" value="">
+            </div>
+        </div>
+
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label for="Position" class="weui-label">位置</label>
+            </div>
+            <!--input class="weui-input" id="Location" type="text" value="丈八总部"-->
+            <div class="weui-cell__ft">
+                <input class="weui-input" id="Position" type="text" style = "text-align:right;" value="">
+            </div>
+        </div>
+    </div>
+
+    <div class="weui-cells__title">请描述需要维修物品（选填）</div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <textarea class="weui-textarea" placeholder="请输入文本" rows="3" onkeyup="wordStat(this);" maxlength="200"></textarea>
+                <div class="weui-textarea-counter"><span id="cnt">0</span>/200</div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="weui-cells__title">上传需要维修物品图片</div>
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <div class="weui-uploader">
+                    <div class="weui-uploader__hd">
+                        <p class="weui-uploader__title">图片上传</p>
+                        <div class="weui-uploader__info"><span id="imgcnt">0</span>/2</div>
+                    </div>
+                    <div class="weui-uploader__bd">
+                        <ul class="weui-uploader__files" id="uploaderFiles">
+                            <!--li class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></li>
+                            <li class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></li>
+                            <li class="weui-uploader__file" style="background-image:url(./images/pic_160.png)"></li>
+                            <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(./images/pic_160.png)">
+                                <div class="weui-uploader__file-content">
+                                    <i class="weui-icon-warn"></i>
+                                </div>
+                            </li>
+                            <li class="weui-uploader__file weui-uploader__file_status" style="background-image:url(./images/pic_160.png)">
+                                <div class="weui-uploader__file-content">50%</div>
+                            </li-->
+                        </ul>
+                        <div class="weui-uploader__input-box">
+                            <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="weui-cells">
+        <div class="weui-cell weui-cell_switch">
+            <div class="weui-cell__bd">匿名报修</div>
+            <div class="weui-cell__ft">
+                <label for="Anonymous_switch" class="weui-switch-cp">
+                    <input id="Anonymous_switch" class="weui-switch-cp__input" type="checkbox" />
+                    <div class="weui-switch-cp__box"></div>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="weui-cells__title" id = "applicatant_info_title">申请人信息</div>
+
+    <div class="weui-cells" id = "applicatant_info">
+        <div class="weui-cell ">
+            <div class="weui-cell__bd">
+                <p>申请人姓名</p>
+            </div>
+            <div class="weui-cell__ft">
+                <p id = "UserName"></p>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>申请人部门</p>
+            </div>
+            <div class="weui-cell__ft">
+                <p id = "UserDept"></p>
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <p>申请人电话</p>
+            </div>
+            <div class="weui-cell__ft">
+                <input class="weui-input" id="UserTele" type="text" style = "text-align:right;color: #0c5460" value="">
+            </div>
+        </div>
+    </div>
+
+    <div class="weui-cells">
+        <!--form action="/MaintainSys/src/php/AppFormHandle.php" method="post" id="form-xyy" enctype="multipart/form-data">
+
+            <input type="submit" name="submit" class="weui-btn weui-btn_primary" onclick="submitAppForm()" value="提交">
+
+        </form-->
+        <a href="javascript:void(0)" class="weui-btn weui-btn_primary"onclick="submitAppForm(this)"><i class=""></i>提交</a>
+    </div>
+
+
+    <div class="weui-footer" style="margin-top:1.5rem;">
+        <p class="weui-footer__links">
+            <a href="" class="weui-footer__link">西北院公共设施报修管理微信应用</a>
+        </p>
+        <p class="weui-footer__text">Copyright ©2019 中国电建集团西北勘测设计研究院有限公司</p>
+        <p class="weui-footer__text">技术支持：信息中心 联系人：仲施平 联系方式：029-88280321</p>
+    </div>
+
+
+</body>
+</html>

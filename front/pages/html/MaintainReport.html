@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>综合服务报修</title>
+    <link rel="stylesheet" href="../../weui-master/dist/style/weui.min.css"/>
+    <link rel="stylesheet" href="../../weui-master/dist/example/example.css"/>
+    <link rel="stylesheet" href="../../jquery-weui-build/dist/css/jquery-weui.css"/>
+    <link rel="stylesheet" href="./../css/stylesheet.css"/>
+    <script type="text/javascript" src="../../easyui/jquery.min.js"></script>
+    <script type="text/javascript" src="../../jquery-weui-build/dist/js/jquery-weui.js"></script>
+    <script type="text/javascript" src="../../Highcharts-7.1.1/code/highcharts.js"></script>
+    <script type="text/javascript" src="../js/common/global.js"></script>
+    <script type="text/javascript" src="../js/common/ajaxTools.js"></script>
+    <script type="text/javascript" src="../js/pagejs/MaintainReport.js"></script>
+</head>
+<body ontouchstart>
+    <div class="weui-tab">
+        <div class="weui-navbar">
+            <a id = "ChartTab" class="weui-navbar__item weui-bar__item--on" href="#tab1">
+                报修统计表
+            </a>
+            <a id = "RateTab" class="weui-navbar__item " href="#tab2">
+                报修评分
+            </a>
+
+        </div>
+        <div class="weui-tab__bd">
+            <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active infinite">
+                <div class="weui-panel weui-panel_access">
+                    <div class="weui-panel__hd">根据选项，生成对应图表。</div>
+                </div>
+                <div class="weui-cells__title">图表选项</div>
+                <div class="weui-cells">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">
+                            <label for="X_axis" class="weui-label">X轴</label>
+                        </div>
+                        <!--input class="weui-input" id="Location" type="text" value="丈八总部"-->
+                        <div class="weui-cell__ft">
+                            <input class="weui-input" id="X_axis" type="text" style = "text-align:right;" value="维修分类">
+                        </div>
+                    </div>
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">
+                            <label for="Y_axis" class="weui-label">Y轴</label>
+                        </div>
+                        <!--input class="weui-input" id="Location" type="text" value="丈八总部"-->
+                        <div class="weui-cell__ft">
+                            <input class="weui-input" id="Y_axis" type="text" style = "text-align:right;" value="用户评分">
+                        </div>
+                    </div>
+
+                    <div class="weui-cell">
+                        <!--form action="/MaintainSys/src/php/AppFormHandle.php" method="post" id="form-xyy" enctype="multipart/form-data">
+
+                            <input type="submit" name="submit" class="weui-btn weui-btn_primary" onclick="submitAppForm()" value="提交">
+
+                        </form-->
+                        <a href="javascript:void(0)" class="weui-btn weui-btn_primary"onclick="GenerateChart()"><i class=""></i>生成图表</a>
+                    </div>
+
+                </div>
+
+                <div class="weui-cells__title">统计图表</div>
+                <div class="weui-cells">
+                    <div id="container" style="min-width:400px;height:400px"></div>
+               </div>
+           </div>
+
+           <div id="tab2" class="weui-tab__bd-item infinite">
+               <div class="weui-panel weui-panel_access">
+                   <div class="weui-panel__hd">点击已完成的报修单，对报修服务进行评价。</div>
+               </div>
+
+               <div class="weui-cells">
+                   <div class="weui-cell">
+                       <div class="weui-cell__bd">
+                           <label for="form-picker" >报修单分类</label>
+                       </div>
+                       <div class="weui-cell__ft">
+                           <input class="weui-input"  type="text" id='form-picker'  style = "color:black;text-align:right;" value=""/>
+                       </div>
+                   </div>
+               </div>
+               <div id ="showpanel_1" class="weui-panel__bd">
+
+
+
+
+                </div>
+                <div id = "loadmore_sign_1" class="hidden weui-loadmore">
+                    <i class="weui-loading"></i>
+                    <span class="weui-loadmore__tips">正在加载</span>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!--div id="container1" style="min-width:400px;height:400px"></div>
+    <div id="container2" style="min-width:400px;height:400px"></div-->
+
+</body>
+</html>

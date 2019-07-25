@@ -1,0 +1,129 @@
+body, html {
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+.mainpage-title {
+    text-align: center;
+    font-size: 34px;
+    color: #3cc51f;
+    font-weight: 400;
+    margin: 0 15%;
+}
+.mainpage-sub-title {
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+}
+
+.logistic-m-footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.btn_space_fill{
+    margin-top:100px;
+    margin-bottom: 200px;
+}
+
+.btn_space_round_fill{
+    margin-top: 20%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 20%;
+}
+
+/*遮罩层*/
+.app_mask {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+
+.app_alert {
+    width: 5rem;
+    height: 4rem;
+    border-radius: .4rem;
+    background: #fff;
+    font-size: .5rem;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -1.5rem;
+    margin-top: -2rem;
+}
+
+.app_alert p:nth-child(1) {
+    line-height: 3rem;
+}
+
+.app_alert p:nth-child(2) span {
+    display: inline-block;
+    width: 49%;
+    height: 1rem;
+    line-height: 1rem;
+    float: left;
+    border-top: 1px solid #ddd;
+}
+
+.app_cancel {
+    border-right: 1px solid #ddd;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.hidden_none{
+    display: none;
+}
+
+.bolden_text{
+    font-weight:bold
+}
+/****RecordManagement.js***/
+/****little progress bar ***/
+.progress-bar{
+    /* 进度条的槽 */
+    width:20%;
+    /* 设置进度条的高度 */
+    height: 15px;
+    /*进度条外层div的背景色，进度未达到的地方的颜色 */
+    background-color: #df8e00;
+    background-color: #f9e1e3;
+    border-radius: 3px;
+    text-align:center;
+    font-size:12px;
+    vertical-align:middle;
+}
+.progress{
+    /* 进度部分 */
+    /* 利用继承父元素宽度的百分比控制进度 */
+    width: 40%;
+    height: 100%;
+    /* 内层背景色即进度达到的颜色 */
+    background-color: #e46a70;
+    border-radius: 3px;
+
+}
+
+.content ol li {
+    float: left;
+    width: 47%;
+}
+
+.content ol li:nth-child(even) {
+    float: right;
+}
+
+.clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+}
